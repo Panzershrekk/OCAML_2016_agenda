@@ -8,3 +8,5 @@ val getAge : contact -> int
 val getMail : contact -> string
 val getNb : contact -> string
 val print: contact -> unit
+
+val capitalize : string -> string

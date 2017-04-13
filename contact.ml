@@ -1,8 +1,9 @@
 type contact     = (string * string * int * string * string)
 
+let capitalize str = String.uppercase_ascii str;;
 
 let create f l a e p = (f, l, a, e, p)
-let createTu (f, l, a, e, p) = (f, l, a, e, p)
+let createTu (f, l, a, e, p) = (f, capitalize l, a, e, p)
 
 let getFn (f, _, _, _, _) = f
 let getLn (_, l, _, _, _) = l
