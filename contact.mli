@@ -18,3 +18,7 @@ val printMail: contact -> unit
 val printNb: contact -> unit
 val printId: int -> unit
 val printAll: contact -> int -> unit
+
+val unsentive_cmp: string -> string -> bool
+val string_to_int_cmp : string -> int -> int
+val cmp_all : contact -> string -> int -> bool

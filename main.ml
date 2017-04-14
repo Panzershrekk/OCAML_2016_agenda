@@ -15,15 +15,22 @@ let one_data = Agenda.addContact one_data ("guillaume", "cauchoix", 20, "guillau
 let one_data = Agenda.addContact one_data ("thomas", "fossaert", 20, "thomas.fossaert@epitech.eu", "02 99 67 65 76");;
 let one_data = Agenda.addContact one_data ("quentin", "baudet", 21, "quentin.baudet@epitech.eu", "03 20 90 03 911");;
 let one_data = Agenda.addContact one_data ("pierre-henri", "dewavrin", 26, "p.h@epitech.eu", "90 21 98 76 45");;
+let one_data = Agenda.addContact one_data ("blabla", "thomas", 26, "blabla.thomas@epitech.eu", "08 51 68 80 21");;
 
 
-
-let d = Agenda.getContactId one_data Phone "OSEF";;
+let d = Agenda.getContactId one_data Phone "bbbbbb";;
+printf "%i\n" d;;
 
 (*Agenda.replaceContact one_data 2 ("Jean", "Pierre", 12, "jeanpierre@epitech.eu", "PERNAUD");;*)
-Agenda.printContacts one_data All "s";;
+Agenda.printContacts one_data FirstName "";;
 Printf.printf "\n";;
 
 let one_data = Agenda.removeContact one_data 2;;
 
-Agenda.printContacts one_data All "s";;
+Agenda.printContacts one_data LastName "BauDet";;
+
+Agenda.printContacts one_data FirstName "Guillaume";;
+Printf.printf "\n";;
+
+Agenda.printContacts one_data Age "20f";;
+Printf.printf "\n";;

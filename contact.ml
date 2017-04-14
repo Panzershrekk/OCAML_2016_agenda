@@ -37,3 +37,22 @@ let printId i =
 
 let printAll s i =
     printId i; printFn s ; printLn s ; printAge s ; printMail s ; printNb s
+
+let unsentive_cmp fstr sstr =
+    if String.compare (String.lowercase_ascii fstr) (String.lowercase_ascii sstr) = 0 then true else false;;
+
+let string_to_int_cmp str default =
+  try
+    (int_of_string str)
+  with
+    | Failure _ -> default
+
+let cmp_all curr s i =
+  if unsentive_cmp (getFn curr) s = true ||
+     unsentive_cmp (getLn curr) s = true ||
+     unsentive_cmp (getMail curr) s = true ||
+     unsentive_cmp (getNb curr) s = true ||
+     i = (string_to_int_cmp s ~-1) ||
+     getAge curr = (string_to_int_cmp s ~-1)
+     then true
+      else false;;
