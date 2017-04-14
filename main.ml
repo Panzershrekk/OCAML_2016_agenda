@@ -9,23 +9,21 @@ let data = [c];;
 let empty = [];;
 
 let one_data = Agenda.addContact data ("Mécasse", "lescouilles", 16, "mecass.lescouilles@epitech.eu", "OSEF");;
-let one_data = Agenda.addContact one_data ("billy", "billy", 36, "billy@epitech.eu", "OSEF");;
+let one_data = Agenda.addContact one_data ("BILLLLLLLLLLLLLLLLLLLLLLY", "billy", 36, "billy@epitech.eu", "OSEF");;
 let one_data = Agenda.addContact one_data ("poil", "liop", 36, "poil.liop@epitech.eu", "09 09 09 09 08 12");;
+let one_data = Agenda.addContact one_data ("guillaume", "cauchoix", 20, "guillaume.cauchoix@epitech.eu", "01 02 03 04 05");;
+let one_data = Agenda.addContact one_data ("thomas", "fossaert", 20, "thomas.fossaert@epitech.eu", "02 99 67 65 76");;
+let one_data = Agenda.addContact one_data ("quentin", "baudet", 21, "quentin.baudet@epitech.eu", "03 20 90 03 911");;
+let one_data = Agenda.addContact one_data ("pierre-henri", "dewavrin", 26, "p.h@epitech.eu", "90 21 98 76 45");;
+
 
 
 let d = Agenda.getContactId one_data Phone "OSEF";;
-printf "%i\n" d;;
 
 (*Agenda.replaceContact one_data 2 ("Jean", "Pierre", 12, "jeanpierre@epitech.eu", "PERNAUD");;*)
 Agenda.printContacts one_data All "s";;
 Printf.printf "\n";;
 
-(*let one_data = Agenda.removeContact empty 19999;;*)
-
-Agenda.printContacts one_data LastName "s";;
-Agenda.printContacts one_data Age "s";;
-Agenda.printContacts one_data FirstName "s";;
-Agenda.printContacts one_data Email "s";;
-Agenda.printContacts one_data Phone "s";;
+let one_data = Agenda.removeContact one_data 2;;
 
 Agenda.printContacts one_data All "s";;

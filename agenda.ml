@@ -52,8 +52,9 @@ module Agenda : AGENDA =
         in aux l 0;;
 
     (*
-    *************************************************************************************************************************************
-    *************************************************************************************************************************************
+    *******************************************************************************
+    *                               *REMOVECONTACT*                               *
+    *******************************************************************************
     *)
 
     let rec removeContact l n =
@@ -68,28 +69,33 @@ module Agenda : AGENDA =
           | head::tail -> if n = 0 then tail else head::removeContact tail (n-1);;
 
     (*
-    *************************************************************************************************************************************
-    *************************************************************************************************************************************
+    *******************************************************************************
+    *                               *REPLACECONTACT*                               *
+    *******************************************************************************
     *)
 
     let rec replaceContact l n tuple = match l with
       | [] -> l
-      | head::tail -> if n = 0 then (Contact.createTu tuple)::tail else replaceContact tail (n-1) tuple;;
+      | head::tail -> if n = 0 then (Contact.createTu tuple)::tail else head::replaceContact tail (n-1) tuple;;
 
     (*
-    *************************************************************************************************************************************
-    *************************************************************************************************************************************
+    *******************************************************************************
+    *                               *PRINTCONTACTS*                               *
+    *******************************************************************************
     *)
 
 
-    let rec printContacts l f s = match l with
-      | [] -> Printf.printf "\n"
-      | head::tail -> match f with
-                      | All -> Printf.printf "%i %s %s %i %s %s\n" 0 (Contact.getLn head) (Contact.getFn head) (Contact.getAge head) (Contact.getMail head) (Contact.getNb head); printContacts tail f s
-                      | Id -> print_endline (Contact.getLn head) ; printContacts tail f s
-                      | FirstName -> print_endline (Contact.getFn head) ; printContacts tail f s
-                      | LastName -> print_endline (Contact.getLn head) ; printContacts tail f s
-                      | Age -> print_endline (string_of_int (Contact.getAge head)) ; printContacts tail f s
-                      | Email -> print_endline (Contact.getMail head) ; printContacts tail f s
-                      | Phone -> print_endline (Contact.getNb head) ; printContacts tail f s;;
+    let printContacts l f s =
+      let rec aux acc = function
+        | [] -> print_string ""
+        | head::tail when s = "" -> Contact.printAll head acc ; aux (acc + 1) tail
+        | head::tail -> match f with
+                        | All ->  if String.compare (Contact.getFn head) s = 0 then Contact.printAll head acc else aux (acc + 1) tail
+                        | Id -> if acc = int_of_string s then Contact.printAll head acc else aux (acc + 1) tail
+                        | FirstName -> if String.compare (Contact.getFn head) s = 0 then Contact.printAll head acc else aux (acc + 1) tail
+                        | LastName -> if String.compare (Contact.getLn head) s = 0 then Contact.printAll head acc else aux (acc + 1) tail
+                        | Age -> if Contact.getAge head = int_of_string s then Contact.printAll head acc else aux (acc + 1) tail
+                        | Email -> if String.compare (Contact.getMail head) s = 0 then Contact.printAll head acc else aux (acc + 1) tail
+                        | Phone -> if String.compare (Contact.getNb head) s = 0 then Contact.printAll head acc else aux (acc + 1) tail
+      in aux 0 l;;
   end;;
