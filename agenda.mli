@@ -1,3 +1,5 @@
+open Contact
+
 type field = All | Id | FirstName | LastName | Age | Email | Phone
 
 module type AGENDA =

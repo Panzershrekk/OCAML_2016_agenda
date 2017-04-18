@@ -1,9 +1,12 @@
-type contact     = (string * string * int * string * string)
+type contact = (string * string * int * string * string)
 
 let capitalize str = String.uppercase_ascii str;;
 
+
+let capitalize_n str = (*String.capitalize_ascii str ; *)String.mapi (fun i c -> if i = 0 || String.get str (i-1) = '-' then Char.uppercase_ascii c else c) str;;
+
 let create f l a e p = (f, l, a, e, p)
-let createTu (f, l, a, e, p) = (f, capitalize l, a, e, p)
+let createTu (f, l, a, e, p) = (capitalize_n (String.lowercase_ascii (String.trim f)), capitalize (String.trim l), a, e, p)
 
 let getFn (f, _, _, _, _) = f
 let getLn (_, l, _, _, _) = l
@@ -55,4 +58,22 @@ let cmp_all curr s i =
      i = (string_to_int_cmp s ~-1) ||
      getAge curr = (string_to_int_cmp s ~-1)
      then true
-      else false;;
+  else false;;
+
+let rec nbrValidity str i = match String.get str i with
+  | '0' .. '9' when i = 13 -> true
+  | '0' .. '9' -> true && nbrValidity str (i+1)
+  | ' ' when i = 2 || i = 5 || i = 8 || i = 11 -> true && nbrValidity str (i+1)
+  | _ -> false
+
+
+let checkNumber str =
+  if String.length str = 14 &&
+     (*String.index_from str 0 ' ' = 2 &&
+     String.index_from str 3 ' ' = 5 &&
+     String.index_from str 6 ' ' = 8 &&
+     String.index_from str 9 ' ' = 11 &&*)
+     String.index_from str 0 '0' = 0 &&
+     nbrValidity str 0 = true
+     then true
+  else false;;

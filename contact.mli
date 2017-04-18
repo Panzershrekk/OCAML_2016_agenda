@@ -9,6 +9,7 @@ val getMail : contact -> string
 val getNb : contact -> string
 
 val capitalize : string -> string
+val capitalize_n : string -> string
 val str_sub : string -> int -> string
 
 val printFn: contact -> unit
@@ -22,3 +23,5 @@ val printAll: contact -> int -> unit
 val unsentive_cmp: string -> string -> bool
 val string_to_int_cmp : string -> int -> int
 val cmp_all : contact -> string -> int -> bool
+val nbrValidity : string -> int -> bool
+val checkNumber : string -> bool
