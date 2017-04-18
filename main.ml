@@ -23,6 +23,9 @@ let one_data = Agenda.addContact one_data ("blabla", "thomas", 26, "blabla.thoma
 let one_data = Agenda.addContact one_data ("guillaume", "cauchk", 53, "jp.josef@epitech.eu", "02 02 02 02 02");;
 let one_data = Agenda.addContact one_data ("jean-paul", "josef", 53, "jp.josef@epitech.eu", "02 02 02 02 02");;
 let one_data = Agenda.addContact one_data ("a", "alphabet", 53, "a@b.c", "02 02 02 02 02");;
+let one_data = Agenda.addContact one_data ("bilbo", "saquet", 53, "a@b.c", "02 02 02 02 02");;
+let one_data = Agenda.addContact one_data ("bilba", "saquet", 53, "a@b.c", "02 02 02 02 02");;
+
 
 
 

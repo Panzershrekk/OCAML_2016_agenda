@@ -3,7 +3,7 @@ type contact = (string * string * int * string * string)
 let capitalize str = String.uppercase_ascii str;;
 
 
-let capitalize_n str = (*String.capitalize_ascii str ; *)String.mapi (fun i c -> if i = 0 || String.get str (i-1) = '-' then Char.uppercase_ascii c else c) str;;
+let capitalize_n str = String.mapi (fun i c -> if i = 0 || String.get str (i-1) = '-' || String.get str (i-1) = '\'' || String.get str (i-1) = ' ' then Char.uppercase_ascii c else c) str;;
 
 let create f l a e p = (f, l, a, e, p)
 let createTu (f, l, a, e, p) = (capitalize_n (String.lowercase_ascii (String.trim f)), capitalize (String.trim l), a, e, p)
