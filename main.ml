@@ -36,7 +36,7 @@ let d = Agenda.getContactId one_data All "zertyuiop";;
 printf "%i\n" d;;
 
 printf "******************EVENT****************\n";;
-
+(*
 
 let event = [];;
 let event = Event.addEvent event ("01/03/2011", "18.00","Rdv avec le médecin");;
@@ -44,3 +44,4 @@ let event = Event.addEvent event ("31/12/2201", "09.12","Nourir le chien");;
 let event = Event.addEvent event ("21/06/2009", "16.59","Epilation du torse");;
 
 Event.printEvents event All "";;
+*)
