@@ -92,7 +92,7 @@ module Event : EVENT =
        validDate (getDate (createTu e)) = false
       then raise (Add_Event_With_Invalid_Data)
     else
-      let newev = [createTu e] in List.append l newev;;
+      let newev = [createTu e] in List.sort (fun x y -> if x > y then 1 else 0) (List.append l newev);;
 
   let getEventId l f s =
       let rec aux acc = function
