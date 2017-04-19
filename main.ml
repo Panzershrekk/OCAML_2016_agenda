@@ -3,7 +3,7 @@ open Contact;;
 open Event;;
 open Printf;;
 
-printf "*********************AGENDA************************"
+printf "*********************AGENDA************************\n"
 
 let c = Contact.create "Guillaume" "Collet" 25 "guillaume.collet@epitech.eu" "01 84 07 42 10";;
 
@@ -26,22 +26,14 @@ let one_data = Agenda.addContact one_data ("a", "alphabet", 53, "a@b.c", "02 02 
 let one_data = Agenda.addContact one_data ("bilbo", "saquet", 53, "a@b.c", "02 02 02 02 02");;
 let one_data = Agenda.addContact one_data ("bilba", "saquet", 53, "a@b.c", "02 02 02 02 02");;
 
-let d = Agenda.getContactId one_data Phone "bbbbbb";;
-printf "%i\n" d;;
+
 
 let one_data = Agenda.replaceContact one_data 0 ("Jean", "Pierre", 12, "jeanpierre@epitech.eu", "01 84 07 42 10");;
 Agenda.printContacts one_data FirstName "";;
 Printf.printf "\n";;
 
-let one_data = Agenda.removeContact one_data 2;;
-
-Agenda.printContacts one_data LastName "BauDet";;
-
-Agenda.printContacts one_data FirstName "Guillaume";;
-Printf.printf "\n";;
-
-Agenda.printContacts one_data Age "20f";;
-Printf.printf "\n";
+let d = Agenda.getContactId one_data All "21";;
+printf "%i\n" d;;
 
 printf "******************EVENT****************\n";;
 
