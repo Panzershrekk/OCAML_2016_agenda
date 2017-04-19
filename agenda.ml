@@ -96,11 +96,9 @@ module Agenda : AGENDA =
 *******************************************************************************
 *)
 
-    let rec replaceContact l n tuple = match l with
-      | [] -> l
-      | head::tail as x-> if n = 0 then x else head::replaceContact tail (n-1) tuple;;
-
-    (*let replaceContact l n a  = List.mapi (fun i x -> if i = n then Contact.createTu a else x) l;;*)
+    let replaceContact l n tuple =
+      let rList = removeContact l n
+      in addContact rList tuple
 
 (*
 *******************************************************************************

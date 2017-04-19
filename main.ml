@@ -15,7 +15,7 @@ let one_data = Agenda.addContact data ("Mécasse", "lescouilles", 16, "mecass.le
 let one_data = Agenda.addContact one_data ("BILLLLLLLLLLLLLLLLLLLLLLY", "billy", 36, "billy@h.eu", "02 02 02 02 02");;
 let one_data = Agenda.addContact one_data ("jean-paul", "kosef", 53, "jp.josef@j.eu", "02 02 02 02 02");;
 let one_data = Agenda.addContact one_data ("poil", "liop", 36, "poil.liop@epitech.eu", "09 09 09 09 08");;
-let one_data = Agenda.addContact one_data ("     guillaume    ", "    cauchoix    ", 20, "guillaume.cauchoix@epitech.eu", "01 02 03 04 05");;
+let one_data = Agenda.addContact one_data ("     guil     laume    ", "    cauchoix    ", 20, "guillaume.cauchoix@epitech.eu", "01 02 03 04 05");;
 let one_data = Agenda.addContact one_data ("thomas", "fossaert", 20, "thomas.fossaert@epitech.eu", "02 99 67 65 76");;
 let one_data = Agenda.addContact one_data ("quentin", "baudet", 21, "quentin.baudet@epitech.eu", "03 20 90 09 90");;
 let one_data = Agenda.addContact one_data ("pierre-henri", "dewavrin", 26, "p.h@epitech.eu", "00 21 98 76 45");;
@@ -33,8 +33,7 @@ let one_data = Agenda.addContact one_data ("bilba", "saquet", 53, "a@b.c", "02 0
 let d = Agenda.getContactId one_data Phone "bbbbbb";;
 printf "%i\n" d;;
 
-Agenda.replaceContact one_data 0 ("Jean", "Pierre", 12, "jeanpierre@epitech.eu", "01 84 07 42 10");;
-(*let one_data = List.sort (fun x y -> if x > y then 1 else 0) one_data;;*)
+let one_data = Agenda.replaceContact one_data 0 ("Jean", "Pierre", 12, "jeanpierre@epitech.eu", "01 84 07 42 10");;
 Agenda.printContacts one_data FirstName "";;
 Printf.printf "\n";;
 
