@@ -3,13 +3,13 @@ open Contact;;
 open Event;;
 open Printf;;
 
+printf "*********************AGENDA************************"
+
 let c = Contact.create "Guillaume" "Collet" 25 "guillaume.collet@epitech.eu" "01 84 07 42 10";;
 
 let d = Contact.createTu ("Mecasse", "lescouilles", 36, "mecass.lescouilles@epitech.eu", "01 84 07 42 10");;
 let data = [c];;
 let empty = [];;
-let event = [];;
-let event = Event.addEvent event "Rdv avec le médecin";;
 
 let one_data = Agenda.addContact data ("Mécasse", "lescouilles", 16, "mecass.lescouille@h.eu", "02 02 02 02 02");;
 let one_data = Agenda.addContact one_data ("BILLLLLLLLLLLLLLLLLLLLLLY", "billy", 36, "billy@h.eu", "02 02 02 02 02");;
@@ -26,10 +26,6 @@ let one_data = Agenda.addContact one_data ("a", "alphabet", 53, "a@b.c", "02 02 
 let one_data = Agenda.addContact one_data ("bilbo", "saquet", 53, "a@b.c", "02 02 02 02 02");;
 let one_data = Agenda.addContact one_data ("bilba", "saquet", 53, "a@b.c", "02 02 02 02 02");;
 
-
-
-
-
 let d = Agenda.getContactId one_data Phone "bbbbbb";;
 printf "%i\n" d;;
 
@@ -45,4 +41,13 @@ Agenda.printContacts one_data FirstName "Guillaume";;
 Printf.printf "\n";;
 
 Agenda.printContacts one_data Age "20f";;
-Printf.printf "\n";;
+Printf.printf "\n";
+
+printf "******************EVENT****************\n";;
+
+
+let event = [];;
+let event = Event.addEvent event ("01/03/2011", "18.00","Rdv avec le médecin");;
+let event = Event.addEvent event ("21/06/2009", "16.59","Epilation du torse");;
+
+Event.printEvents event All "";;
