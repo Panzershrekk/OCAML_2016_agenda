@@ -10,7 +10,6 @@ exception Remove_Using_An_Invalid_Id;;
 exception Remove_Impossible_On_An_Empty_List;;
 exception Add_Contact_With_Invalid_Data;;
 
-
 module type AGENDA =
   sig
     val addContact     : Contact.contact list -> string * string * int * string * string -> Contact.contact list
