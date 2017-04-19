@@ -32,7 +32,7 @@ let one_data = Agenda.replaceContact one_data 0 ("Jean", "Pierre", 12, "jeanpier
 Agenda.printContacts one_data FirstName "";;
 Printf.printf "\n";;
 
-let d = Agenda.getContactId one_data All "21";;
+let d = Agenda.getContactId one_data All "zertyuiop";;
 printf "%i\n" d;;
 
 printf "******************EVENT****************\n";;

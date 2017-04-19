@@ -1,8 +1,40 @@
+module type CONTACT =
+  sig
+    type contact = (string * string * int * string * string)
+
+    val create : string -> string -> int -> string -> string -> contact
+    val createTu : string * string * int * string * string -> contact
+    val getFn : contact -> string
+    val getLn : contact -> string
+    val getAge : contact -> int
+    val getMail : contact -> string
+    val getNb : contact -> string
+
+    val capitalize : string -> string
+    val capitalize_n : string -> string
+    val str_sub : string -> int -> string
+
+    val printFn: contact -> unit
+    val printLn: contact -> unit
+    val printAge: contact -> unit
+    val printMail: contact -> unit
+    val printNb: contact -> unit
+    val printId: int -> unit
+    val printAll: contact -> int -> unit
+
+    val unsentive_cmp: string -> string -> bool
+    val string_to_int_cmp : string -> int -> int
+    val cmp_all : contact -> string -> int -> bool
+    val nbrValidity : string -> int -> bool
+    val checkNumber : string -> bool
+  end
+
+module Contact : CONTACT =
+  struct
+
 type contact = (string * string * int * string * string)
 
 let capitalize str = String.uppercase_ascii str;;
-
-
 let capitalize_n str = String.mapi (fun i c -> if i = 0 || String.get str (i-1) = '-' || String.get str (i-1) = '\'' || String.get str (i-1) = ' ' then Char.uppercase_ascii c else c) str;;
 
 let create f l a e p = (f, l, a, e, p)
@@ -77,3 +109,5 @@ let checkNumber str =
      nbrValidity str 0 = true
      then true
   else false;;
+
+end;;

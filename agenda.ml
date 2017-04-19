@@ -1,3 +1,4 @@
+open Contact
 type field = All | Id | FirstName | LastName | Age | Email | Phone;;
 
 (*
@@ -25,6 +26,7 @@ module type AGENDA =
   *******************************************************************************
   *)
 
+
 module Agenda : AGENDA =
   struct
     let addContact l c =
@@ -34,7 +36,6 @@ module Agenda : AGENDA =
       if Contact.getFn (Contact.createTu c) = "" ||
          Contact.getLn (Contact.createTu c) = "" ||
          String.contains (Contact.getMail (Contact.createTu c)) '@' = false ||
-         (*String.rcontains_from (Contact.getMail (Contact.createTu c)) (String.index (Contact.getMail (Contact.createTu c)) '@') 'l' = false ||*)
          String.contains_from (Contact.getMail (Contact.createTu c)) (String.index (Contact.getMail (Contact.createTu c)) '@') '.' = false ||
          String.index_from (Contact.getMail (Contact.createTu c)) 0 '@' = 0 ||
          String.rindex_from (Contact.getMail (Contact.createTu c)) (String.length (Contact.getMail (Contact.createTu c)) - 1)  '.' = (String.length (Contact.getMail (Contact.createTu c)) - 1) ||
@@ -97,7 +98,7 @@ module Agenda : AGENDA =
 
     let replaceContact l n tuple =
       let rList = removeContact l n
-      in addContact rList tuple
+      in addContact rList tuple;;
 
 (*
 *******************************************************************************
