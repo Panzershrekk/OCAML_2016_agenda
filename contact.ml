@@ -13,6 +13,8 @@ module type CONTACT =
     val capitalize : string -> string
     val capitalize_n : string -> string
     val str_sub : string -> int -> string
+    val addString : string -> int -> string
+    val printElema : string -> int -> string
 
     val printFn: contact -> unit
     val printLn: contact -> unit
@@ -27,6 +29,9 @@ module type CONTACT =
     val cmp_all : contact -> string -> int -> bool
     val nbrValidity : string -> int -> bool
     val checkNumber : string -> bool
+
+    val checkStr2 : string -> string -> bool
+    val checkStr : string -> string -> bool
   end
 
 module Contact : CONTACT =
@@ -46,29 +51,48 @@ let getAge (_, _, a, _, _) = a
 let getMail (_, _, _, e, _) = e
 let getNb (_, _, _, _, p) = p
 
-let str_sub s x =
+(*let str_sub s x =
   if String.length s < x
     then s
   else
-    let buff = Buffer.create 0 in Buffer.add_string buff s ; Buffer.sub buff 0 x
+    let buff = Buffer.create 0 in Buffer.add_string buff s ; Buffer.sub buff 0 x*)
+
+    let    str_sub s x =
+        if String.length s < x
+            then s
+        else
+            let buff = Buffer.create 0
+            in Buffer.add_string buff s ; Buffer.sub buff 0 x
+
+    let addString str x =
+        let buff = Buffer.create 0
+        in Buffer.add_string buff str ;
+        Buffer.add_string buff "                                    " ; Buffer.sub buff 0 x
+
+    let printElema str x =
+        if x < String.length str
+            then str_sub str x
+        else
+            addString str x
+
 
 let printFn s =
-    print_string (str_sub (getFn s) 16) ; print_string " "
+    print_string (printElema (getFn s) 16);;
 
 let printLn s =
-    print_string (str_sub (getLn s) 16)  ; print_string " "
+    print_string (printElema (getLn s) 16);;
 
 let printAge s =
-    print_string (str_sub (string_of_int (getAge s)) 4) ; print_string " "
+    print_string (printElema (string_of_int (getAge s)) 4);;
 
 let printMail s =
-    print_string (str_sub (getMail s) 32) ; print_string " "
+    print_string (printElema (getMail s) 32);;
 
 let printNb s =
-    print_string (str_sub (getNb s) 14) ; print_endline ""
+    print_string (printElema (getNb s) 14) ; print_endline ""
 
 let printId i =
-    print_string (str_sub (string_of_int i) 4) ; print_string " "
+    print_string (printElema (string_of_int i) 4);;
 
 let printAll s i =
     printId i; printFn s ; printLn s ; printAge s ; printMail s ; printNb s
@@ -82,13 +106,27 @@ let string_to_int_cmp str default =
   with
     | Failure _ -> default
 
+let checkStr2 str comp =
+    if String.equal (String.lowercase_ascii str) (String.lowercase_ascii comp) = true then true else false;;
+
+let checkStr str comp =
+    let rec aux acc = match acc with
+      | acc when acc > String.length str -> false
+      | acc when String.length str < String.length comp -> false
+      | acc when String.length str = String.length comp && String.equal (String.lowercase_ascii str) (String.lowercase_ascii comp) = false -> false
+      | acc when String.length str - acc < String.length comp -> false
+      | _  -> if checkStr2 (String.sub str acc (String.length comp)) comp = true then true else aux (acc+1)
+    in aux 0;;
+
 let cmp_all curr s i =
-  if unsentive_cmp (getFn curr) s = true ||
-     unsentive_cmp (getLn curr) s = true ||
-     unsentive_cmp (getMail curr) s = true ||
-     unsentive_cmp (getNb curr) s = true ||
+  if checkStr (getFn curr) s = true ||
+     checkStr (getLn curr) s = true ||
+     checkStr (getMail curr) s = true ||
+     checkStr (getNb curr) s = true ||
+     checkStr (string_of_int (getAge curr)) s = true ||
+     checkStr (string_of_int i) s = true (*||
      i = (string_to_int_cmp s ~-1) ||
-     getAge curr = (string_to_int_cmp s ~-1)
+     getAge curr = (string_to_int_cmp s ~-1)*)
      then true
   else false;;
 
@@ -109,5 +147,4 @@ let checkNumber str =
      nbrValidity str 0 = true
      then true
   else false;;
-
 end;;

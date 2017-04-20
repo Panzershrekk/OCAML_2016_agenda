@@ -65,12 +65,12 @@ module Agenda : AGENDA =
         | [] -> -1
         | head::tail -> match f with
                         | All -> if Contact.cmp_all head s acc = true then acc else aux (acc + 1) tail
-                        | Id -> if acc = int_of_string s then acc else aux (acc + 1) tail
-                        | FirstName -> if String.compare (Contact.getFn head) s = 0 then acc else aux (acc + 1) tail
-                        | LastName -> if String.compare (Contact.getLn head) s = 0 then acc else aux (acc + 1) tail
-                        | Age -> if Contact.getAge head = int_of_string s then acc else aux (acc + 1) tail
-                        | Email -> if String.compare (Contact.getMail head) s = 0 then acc else aux (acc + 1) tail
-                        | Phone -> if String.compare (Contact.getNb head) s = 0 then acc else aux (acc + 1) tail
+                        | Id -> if Contact.checkStr (string_of_int acc) s = true then acc else aux (acc + 1) tail
+                        | FirstName -> if Contact.checkStr (Contact.getFn head) s = true then acc else aux (acc + 1) tail
+                        | LastName -> if Contact.checkStr (Contact.getLn head) s = true then acc else aux (acc + 1) tail
+                        | Age -> if Contact.checkStr (string_of_int (Contact.getAge head)) s = true then acc else aux (acc + 1) tail
+                        | Email -> if Contact.checkStr (Contact.getMail head) s = true then acc else aux (acc + 1) tail
+                        | Phone -> if Contact.checkStr (Contact.getNb head) s = true then acc else aux (acc + 1) tail
         in aux 0 l;;
 
 (*
@@ -113,11 +113,11 @@ module Agenda : AGENDA =
         | head::tail when s = "" -> Contact.printAll head acc ; aux (acc + 1) tail
         | head::tail -> match f with
                         | All ->  if Contact.cmp_all head s acc = true then Contact.printAll head acc ; aux (acc + 1) tail
-                        | Id -> if acc = (Contact.string_to_int_cmp s ~-1) then Contact.printAll head acc ; aux (acc + 1) tail
-                        | FirstName -> if Contact.unsentive_cmp (Contact.getFn head) s = true then Contact.printAll head acc ; aux (acc + 1) tail
-                        | LastName -> if Contact.unsentive_cmp (Contact.getLn head) s = true then Contact.printAll head acc ; aux (acc + 1) tail
-                        | Age -> if Contact.getAge head = (Contact.string_to_int_cmp s ~-1) then Contact.printAll head acc ; aux (acc + 1) tail
-                        | Email -> if Contact.unsentive_cmp (Contact.getMail head) s = true then Contact.printAll head acc ; aux (acc + 1) tail
-                        | Phone -> if Contact.unsentive_cmp (Contact.getNb head) s = true then Contact.printAll head acc ; aux (acc + 1) tail
+                        | Id -> if Contact.checkStr (string_of_int acc) s = true then Contact.printAll head acc ; aux (acc + 1) tail
+                        | FirstName -> if Contact.checkStr (Contact.getFn head) s = true then Contact.printAll head acc ; aux (acc + 1) tail
+                        | LastName -> if Contact.checkStr  (Contact.getLn head) s = true then Contact.printAll head acc ; aux (acc + 1) tail
+                        | Age -> if Contact.checkStr (string_of_int (Contact.getAge head)) s = true then Contact.printAll head acc ; aux (acc + 1) tail
+                        | Email -> if Contact.checkStr  (Contact.getMail head) s = true then Contact.printAll head acc ; aux (acc + 1) tail
+                        | Phone -> if Contact.checkStr  (Contact.getNb head) s = true then Contact.printAll head acc ; aux (acc + 1) tail
       in aux 0 l;;
   end;;
