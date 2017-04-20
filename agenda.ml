@@ -43,15 +43,7 @@ module Agenda : AGENDA =
          Contact.checkNumber (Contact.getNb (Contact.createTu c)) = false
         then raise (Add_Contact_With_Invalid_Data)
       else
-        let newco = [Contact.createTu c] in List.sort (fun x y -> if (Contact.getLn x) > (Contact.getLn y)
-                                                                  then 1
-                                                                  else
-                                                                    if (Contact.getLn x) <> (Contact.getLn y)
-                                                                      then 0
-                                                                    else
-                                                                      if (Contact.getFn x) > (Contact.getFn y)
-                                                                        then 1
-                                                                      else 0 )
+        let newco = [Contact.createTu c] in List.sort (fun x y -> if x > y then 1 else 0)
                                                                   (List.append l newco);;
 
 (*
