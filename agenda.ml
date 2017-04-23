@@ -63,7 +63,7 @@ module Agenda : AGENDA =
                         | Age -> if Contact.checkStr (string_of_int (Contact.getAge head)) s = true then acc else aux (acc + 1) tail
                         | Email -> if Contact.checkStr (Contact.getMail head) s = true then acc else aux (acc + 1) tail
                         | Phone -> if Contact.checkStr (Contact.getNb head) s = true then acc else aux (acc + 1) tail
-        in aux 0 l;;
+        in aux 0 (List.sort (fun x y -> if x > y then 1 else 0) l);;
 
 (*
 *******************************************************************************
@@ -78,7 +78,7 @@ module Agenda : AGENDA =
       if List.length l <= 0
         then raise (Remove_Impossible_On_An_Empty_List)
       else
-        match l with
+        match (List.sort (fun x y -> if x > y then 1 else 0) l) with
           | [] -> []
           | head::tail -> if n = 0 then tail else head::removeContact tail (n-1);;
 
@@ -111,5 +111,5 @@ module Agenda : AGENDA =
                         | Age -> if Contact.checkStr (string_of_int (Contact.getAge head)) s = true then Contact.printAll head acc ; aux (acc + 1) tail
                         | Email -> if Contact.checkStr  (Contact.getMail head) s = true then Contact.printAll head acc ; aux (acc + 1) tail
                         | Phone -> if Contact.checkStr  (Contact.getNb head) s = true then Contact.printAll head acc ; aux (acc + 1) tail
-      in aux 0 l;;
+      in aux 0 (List.sort (fun x y -> if x > y then 1 else 0) l);;
   end;;
