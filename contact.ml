@@ -51,29 +51,23 @@ let getAge (_, _, a, _, _) = a
 let getMail (_, _, _, e, _) = e
 let getNb (_, _, _, _, p) = p
 
-(*let str_sub s x =
+let    str_sub s x =
   if String.length s < x
     then s
   else
-    let buff = Buffer.create 0 in Buffer.add_string buff s ; Buffer.sub buff 0 x*)
+    let buff = Buffer.create 0
+  in Buffer.add_string buff s ; Buffer.sub buff 0 x
 
-    let    str_sub s x =
-        if String.length s < x
-            then s
-        else
-            let buff = Buffer.create 0
-            in Buffer.add_string buff s ; Buffer.sub buff 0 x
+let addString str x =
+  let buff = Buffer.create 0
+in Buffer.add_string buff str ;
+Buffer.add_string buff "                                    " ; Buffer.sub buff 0 x
 
-    let addString str x =
-        let buff = Buffer.create 0
-        in Buffer.add_string buff str ;
-        Buffer.add_string buff "                                    " ; Buffer.sub buff 0 x
-
-    let printElema str x =
-        if x < String.length str
-            then str_sub str x
-        else
-            addString str x
+let printElema str x =
+  if x < String.length str
+    then str_sub str x
+  else
+    addString str x
 
 
 let printFn s =
@@ -124,10 +118,8 @@ let cmp_all curr s i =
      checkStr (getMail curr) s = true ||
      checkStr (getNb curr) s = true ||
      checkStr (string_of_int (getAge curr)) s = true ||
-     checkStr (string_of_int i) s = true (*||
-     i = (string_to_int_cmp s ~-1) ||
-     getAge curr = (string_to_int_cmp s ~-1)*)
-     then true
+     checkStr (string_of_int i) s = true
+  then true
   else false;;
 
 let rec nbrValidity str i = match String.get str i with
@@ -139,10 +131,6 @@ let rec nbrValidity str i = match String.get str i with
 
 let checkNumber str =
   if String.length str = 14 &&
-     (*String.index_from str 0 ' ' = 2 &&
-     String.index_from str 3 ' ' = 5 &&
-     String.index_from str 6 ' ' = 8 &&
-     String.index_from str 9 ' ' = 11 &&*)
      String.index_from str 0 '0' = 0 &&
      nbrValidity str 0 = true
      then true
