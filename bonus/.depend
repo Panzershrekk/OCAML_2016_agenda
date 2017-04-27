@@ -1,0 +1,11 @@
+agenda.cmo : contact.cmi agenda.cmi
+agenda.cmx : contact.cmx agenda.cmi
+agenda.cmi : contact.cmi
+contact.cmo : contact.cmi
+contact.cmx : contact.cmi
+contact.cmi :
+event.cmo : event.cmi
+event.cmx : event.cmi
+event.cmi :
+main.cmo : event.cmi contact.cmi agenda.cmi
+main.cmx : event.cmx contact.cmx agenda.cmx
